@@ -23,14 +23,19 @@ NanAngularGenerator.prototype.askFor = function askFor() {
   console.log(this.yeoman);
 
   var prompts = [{
-    type: 'confirm',
-    name: 'someOption',
-    message: 'Would you like to enable this option?',
-    default: true
-  }];
+      name: 'projectName',
+      message: 'How would you like to name the new project?'
+    }, {
+      type: 'list',
+      name: 'angularVersion',
+      message: 'Which AngularJS version would you like to use?',
+      choices: ['1.2.6', '1.2.5', '1.1.5']
+    }
+  ];
 
   this.prompt(prompts, function (props) {
-    this.someOption = props.someOption;
+    this.projectName = props.projectName;
+    this.angularVersion = props.angularVersion;
 
     cb();
   }.bind(this));
