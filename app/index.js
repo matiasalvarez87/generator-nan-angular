@@ -78,6 +78,8 @@ NanAngularGenerator.prototype.askFor = function askFor() {
 
 NanAngularGenerator.prototype.app = function app() {
   this.mkdir('app');
+  this.mkdir('app/styles');
+  this.mkdir('app/styles/less');
   this.mkdir('app/js');
   this.mkdir('app/js/controllers');
   this.mkdir('app/js/services');
@@ -94,6 +96,12 @@ NanAngularGenerator.prototype.app = function app() {
   this.template('index.html', 'app/index.html');
   this.copy('js/main.js', 'app/js/main.js');
   this.copy('views/main.html', 'app/views/main.html');
+
+  // Application styles
+  this.copy('styles/less/general.less', 'app/styles/less/general.less');
+  this.copy('styles/less/commons.less', 'app/styles/less/commons.less');
+  this.copy('styles/less/variables.less', 'app/styles/less/variables.less');
+  this.copy('styles/less/main.less', 'app/styles/less/main.less');
 };
 
 NanAngularGenerator.prototype.projectfiles = function projectfiles() {

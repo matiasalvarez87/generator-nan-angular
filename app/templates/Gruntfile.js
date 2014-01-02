@@ -27,19 +27,19 @@ module.exports = function (grunt) {
         less: {
             dev: {
                 options: {
-                    paths: ["app/assets/less"]
+                    paths: ["app/styles/less"]
                 },
                 files: {
-                    "app/assets/css/dev-styles.css": "app/assets/less/index.less"
+                    "app/styles/dist/dev.css": "app/styles/less/main.less"
                 }
             },
             prod: {
                 options: {
-                    paths: ["app/assets/css"],
+                    paths: ["app/dist/css"],
                     cleancss: true
                 },
                 files: {
-                    "app/assets/css/styles.css": "app/assets/less/index.less"
+                    "app/styles/dist/styles.css": "app/styles/less/styles.less"
                 }
             }
         },
@@ -49,7 +49,7 @@ module.exports = function (grunt) {
                 nospawn: true
             },
             compile: {
-                files: ['app/assets/less/**/*.less'],
+                files: ['app/styles/less/**/*.less'],
                 tasks: ['build'],
             }
         },
@@ -78,11 +78,9 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['jshint']);
 
     // Compile
-    // grunt.registerTask('build', ['jshint', 'less:dev']);
-    grunt.registerTask('build', ['jshint']);
+    grunt.registerTask('build', ['jshint', 'less:dev']);
 
     // Run Servers
-    //grunt.registerTask('server', ['build', 'connect:dev', 'open:dev', 'watch']);
-    grunt.registerTask('server', ['build', 'connect:dev', 'open:dev']);
+    grunt.registerTask('server', ['build', 'connect:dev', 'open:dev', 'watch']);
 
 };
