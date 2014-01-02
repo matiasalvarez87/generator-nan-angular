@@ -51,6 +51,10 @@ NanAngularGenerator.prototype.askFor = function askFor() {
         name: 'angular-route.js',
         checked: true
       }]
+    }, {
+      name: 'devPort',
+      message: 'What number port would you like to use for the development environment?',
+      default: 9000
     }
   ];
 
@@ -59,6 +63,7 @@ NanAngularGenerator.prototype.askFor = function askFor() {
     // General Options
     this.projectName = props.projectName;
     this.angularVersion = props.angularVersion;
+    this.devPort = props.devPort;
 
     // AngularJS Modules
     var hasMod = function (mod) { return props.modules.indexOf(mod) !== -1; };
@@ -81,8 +86,12 @@ NanAngularGenerator.prototype.app = function app() {
   this.mkdir('app/js/filters');
   this.mkdir('app/templates');
 
-  this.copy('_package.json', 'package.json');
-  this.copy('_bower.json', 'bower.json');
+  this.template('Gruntfile.js', 'Gruntfile.js');
+  this.template('_package.json', 'package.json');
+  this.template('_bower.json', 'bower.json');
+
+  // Application files
+  this.copy('../js/main.js', 'app/js/main.js');
 };
 
 NanAngularGenerator.prototype.projectfiles = function projectfiles() {
