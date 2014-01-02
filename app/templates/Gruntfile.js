@@ -62,10 +62,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 options: {
-                    base: [
-                        'bower_components',
-                        'app'
-                    ]
+                    base: 'app'
                 }
             }
         },
@@ -81,9 +78,11 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['jshint']);
 
     // Compile
-    grunt.registerTask('build', ['jshint', 'less:dev']);
+    // grunt.registerTask('build', ['jshint', 'less:dev']);
+    grunt.registerTask('build', ['jshint']);
 
     // Run Servers
-    grunt.registerTask('server', ['build', 'connect:dev', 'open:dev', 'watch']);
+    //grunt.registerTask('server', ['build', 'connect:dev', 'open:dev', 'watch']);
+    grunt.registerTask('server', ['build', 'connect:dev', 'open:dev']);
 
 };

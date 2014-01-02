@@ -84,17 +84,20 @@ NanAngularGenerator.prototype.app = function app() {
   this.mkdir('app/js/models');
   this.mkdir('app/js/directives');
   this.mkdir('app/js/filters');
-  this.mkdir('app/templates');
+  this.mkdir('app/views');
 
   this.template('Gruntfile.js', 'Gruntfile.js');
   this.template('_package.json', 'package.json');
   this.template('_bower.json', 'bower.json');
 
   // Application files
-  this.copy('../js/main.js', 'app/js/main.js');
+  this.template('index.html', 'app/index.html');
+  this.copy('js/main.js', 'app/js/main.js');
+  this.copy('views/main.html', 'app/views/main.html');
 };
 
 NanAngularGenerator.prototype.projectfiles = function projectfiles() {
+  this.copy('bowerrc', '.bowerrc');
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
 };

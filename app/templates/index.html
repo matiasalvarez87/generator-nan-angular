@@ -18,16 +18,16 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="<%= scriptAppName %>">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <% if (ngRoute) {
+    <% if (routeModule) {
       %><div class="container" ng-view></div><%
     } else {
-      %><div class="container" ng-include="'views/main.html'" ng-controller="MainCtrl"></div><%
+      %><div class="container" ng-include="'views/main.html'"></div><%
     } %>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
