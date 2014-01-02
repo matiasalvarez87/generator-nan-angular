@@ -1,6 +1,18 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "<%= _.slugify(projectName) %>",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "<%= angularVersion %>"<% if (resourceModule) { %>,
+    "angular-resource": "<%= angularVersion %>"<% } %><% if (cookiesModule) { %>,
+    "angular-cookies": "<%= angularVersion %>"<% } %><% if (sanitizeModule) { %>,
+    "angular-sanitize": "<%= angularVersion %>"<% } %><% if (routeModule) { %>,
+    "angular-route": "<%= angularVersion %>"<% } %>
+  }
 }
-

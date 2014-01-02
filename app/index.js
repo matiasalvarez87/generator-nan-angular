@@ -30,12 +30,42 @@ NanAngularGenerator.prototype.askFor = function askFor() {
       name: 'angularVersion',
       message: 'Which AngularJS version would you like to use?',
       choices: ['1.2.6', '1.2.5', '1.1.5']
+    }, {
+      type: 'checkbox',
+      name: 'modules',
+      message: 'Which AngularJS modules would you like to include?',
+      choices: [{
+        value: 'resourceModule',
+        name: 'angular-resource.js',
+        checked: true
+      }, {
+        value: 'cookiesModule',
+        name: 'angular-cookies.js',
+        checked: true
+      }, {
+        value: 'sanitizeModule',
+        name: 'angular-sanitize.js',
+        checked: true
+      }, {
+        value: 'routeModule',
+        name: 'angular-route.js',
+        checked: true
+      }]
     }
   ];
 
   this.prompt(prompts, function (props) {
+
+    // General Options
     this.projectName = props.projectName;
     this.angularVersion = props.angularVersion;
+
+    // AngularJS Modules
+    var hasMod = function (mod) { return props.modules.indexOf(mod) !== -1; };
+    this.resourceModule = hasMod('resourceModule');
+    this.cookiesModule = hasMod('cookiesModule');
+    this.sanitizeModule = hasMod('sanitizeModule');
+    this.routeModule = hasMod('routeModule');
 
     cb();
   }.bind(this));
@@ -43,6 +73,12 @@ NanAngularGenerator.prototype.askFor = function askFor() {
 
 NanAngularGenerator.prototype.app = function app() {
   this.mkdir('app');
+  this.mkdir('app/js');
+  this.mkdir('app/js/controllers');
+  this.mkdir('app/js/services');
+  this.mkdir('app/js/models');
+  this.mkdir('app/js/directives');
+  this.mkdir('app/js/filters');
   this.mkdir('app/templates');
 
   this.copy('_package.json', 'package.json');
